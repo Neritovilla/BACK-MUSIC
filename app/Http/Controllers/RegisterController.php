@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
 
+    /*validate in database if exist name or email, return 0 is not exist or 1 if exist */
     public function checkData(Request $request){
-
         $input = $request->all();
-
         $user = User::where('name', $input["name"])
         ->orWhere('email', $input["email"])
         ->first();
-
         if (!$user) {
             return response()->json(0);
         }else{
@@ -25,10 +23,9 @@ class RegisterController extends Controller
         }
     }
 
-
+    /*Insert user in database*/
     public function store(Request $request){
         $input = $request->all();
-
         $user = User::create([
             "name"=> $input["name"],
             "email"=> $input["email"],

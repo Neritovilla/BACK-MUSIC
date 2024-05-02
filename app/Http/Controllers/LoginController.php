@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
+    /*Validate credencials in database for access at aplication*/
     public function check(Request $request){
     $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials)){
